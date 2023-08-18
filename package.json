@@ -1,0 +1,18 @@
+{
+  "name": "laravel-quasar-table",
+  "version": "1.0.0",
+  "description": "A paginator for Laravel and Quasar",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "author": "lleraabi@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@inertiajs/vue3": "^1.0.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.0.0",
+    "vitest": "^0.34.2",
+    "vue": "^3.2.41"
+  }
+}
