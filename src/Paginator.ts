@@ -7,6 +7,7 @@ import {ref} from "vue";
 /**
  * Helper for make a pagination.
  *
+ * @author Abel David.
  * @param data
  * @param columns
  */
