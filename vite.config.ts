@@ -11,7 +11,8 @@ export default defineConfig({
     },
     plugins: [
         dts({
-
+            outDir: "dist/types",
+            include: "src"
         })
     ]
 })

@@ -2,6 +2,7 @@
   "name": "laravel-quasar-table",
   "version": "1.0.0",
   "description": "A paginator for Laravel and Quasar",
+  "main": "index.ts",
   "scripts": {
     "build": "vite build",
     "test": "vitest"
