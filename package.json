@@ -1,6 +1,6 @@
 {
   "name": "laravel-quasar-table",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha",
   "description": "A paginator for Laravel and Quasar",
   "main": "index.ts",
   "scripts": {
@@ -10,11 +10,13 @@
   "author": "lleraabi@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "@inertiajs/vue3": "^1.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.0.0",
     "vite-plugin-dts": "^3.5.2",
-    "vitest": "^0.34.2",
+    "vitest": "^0.34.2"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
     "vue": "^3.2.41"
   }
 }

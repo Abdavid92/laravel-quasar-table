@@ -4,10 +4,20 @@ import {ServerPagination} from "./ServerPagination";
  * @author Abel David.
  */
 export interface ServerPaginator<T> {
-    paginatorName: string
+    /**
+     * Filter.
+     */
     filter: string
+    /**
+     * Sort by.
+     */
     sortBy: string
+    /**
+     * Indicate if sorting must be descending or not.
+     */
     descending: boolean|null
-    args: []
+    /**
+     * Data paginated.
+     */
     pagination: ServerPagination<T>
 }
