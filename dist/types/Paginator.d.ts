@@ -1,14 +1,10 @@
 import { Pagination } from "./Pagination";
 import { Column } from "./Column";
-import { ServerPaginator } from "./ServerPaginator";
+import { Config } from "./Config";
 /**
  * @author Abel David.
  */
 export declare class Paginator<T> implements Pagination {
-    /**
-     * @type string
-     */
-    paginatorName: string;
     /**
      * @type boolean
      */
@@ -32,7 +28,7 @@ export declare class Paginator<T> implements Pagination {
     /**
      * @type {[]}
      */
-    data: T;
+    data: T[];
     /**
      * @type {string}
      */
@@ -44,17 +40,29 @@ export declare class Paginator<T> implements Pagination {
     /**
      * @type Column[]
      */
-    columns: Column[];
+    columns: Column<T>[];
     /**
-     * @type {Map<string, any>}
-     * @private
+     * @type AxiosInstance
      */
-    private readonly args;
+    private client;
     /**
-     * @param data
+     * Launch when fetching data.
+     */
+    private readonly onFetching?;
+    /**
+     * Launch when fetch data.
+     */
+    private readonly onFetch?;
+    /**
+     * Launch when fetch data failed.
+     */
+    private readonly onFailedFetch?;
+    /**
+     * @param url
      * @param columns
+     * @param config
      */
-    constructor(data: ServerPaginator<T>, columns: Column[]);
+    constructor(url: string, columns: Column<T>[], config?: Config<T>);
     /**
      * Request table.
      *
@@ -64,8 +72,8 @@ export declare class Paginator<T> implements Pagination {
     onRequest(props: {
         filter: string;
         pagination: Pagination;
-    }, args?: Map<string, any>): void;
-    private initialize;
+    }, args?: Map<string, any>): Promise<void>;
     private buildRouterArgs;
     private getColumnName;
+    private fetch;
 }
