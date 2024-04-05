@@ -10,6 +10,10 @@ export interface Config<T> {
      */
     axiosInstance?: AxiosInstance
     /**
+     * On fetching callback.
+     */
+    onFetching?: () => void
+    /**
      * On fetch callback.
      *
      * @param response

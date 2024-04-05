@@ -60,6 +60,10 @@ export class Paginator<T> implements Pagination {
     private client: AxiosInstance
 
     /**
+     * Launch when fetching data.
+     */
+    private readonly onFetching?: () => void
+    /**
      * Launch when fetch data.
      */
     private readonly onFetch?: (response: ServerPaginator<T>) => void
@@ -88,6 +92,11 @@ export class Paginator<T> implements Pagination {
         this.client = config?.axiosInstance ?? axios
         this.onFetch = config?.onFetch
         this.onFailedFetch = config?.onFailedFetch
+        this.onFetching = config?.onFetching
+
+        if (this.onFetching) {
+            this.onFetching()
+        }
 
         this.fetch({
             filter: this.filter,
@@ -114,6 +123,10 @@ export class Paginator<T> implements Pagination {
     async onRequest(props: { filter: string, pagination: Pagination }, args?: Map<string, any>) {
 
         let response = null
+
+        if (this.onFetching) {
+            this.onFetching()
+        }
 
         try {
             response = await this.fetch(props, args)
