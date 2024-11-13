@@ -1,8 +1,8 @@
 import {Column} from "./Column";
 import {ref} from "vue";
 import {Pagination} from "./Pagination";
-import {Paginator} from "./Paginator";
-import {Config} from "./Config";
+import {PaginatorService} from "./paginator.service";
+import {Config} from "./config";
 
 /**
  * Helper for make a pagination.
@@ -14,9 +14,9 @@ import {Config} from "./Config";
  */
 export function usePagination<T>(url: string, columns: Column<T>[], config?: Config<T>) {
 
-    //const service = new Paginator(url, columns, config)
+    //const service = new PaginatorService(url, columns, config)
 
-    const pagination = ref(new Paginator(url, columns, config))
+    const pagination = ref(new PaginatorService(url, columns, config))
 
     const filter = ref(pagination.value.filter)
 

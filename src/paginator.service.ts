@@ -1,13 +1,13 @@
 import {Pagination} from "./Pagination";
 import {Column} from "./Column";
 import {ServerPaginator} from "./ServerPaginator";
-import {Config} from "./Config";
+import {Config} from "./config";
 import axios, {AxiosInstance} from "axios";
 
 /**
  * @author Abel David.
  */
-export class Paginator<T> implements Pagination {
+export class PaginatorService<T> {
 
     /**
      * @type boolean
@@ -35,31 +35,6 @@ export class Paginator<T> implements Pagination {
     sortBy: string;
 
     /**
-     * @type {[]}
-     */
-    data: T[]
-
-    /**
-     * @type {string}
-     */
-    path: string
-
-    /**
-     * @type {string}
-     */
-    filter: string
-
-    /**
-     * @type Column[]
-     */
-    columns: Column<T>[]
-
-    /**
-     * @type AxiosInstance
-     */
-    private client: AxiosInstance
-
-    /**
      * Launch when fetching data.
      */
     private readonly onFetching?: () => void
@@ -78,9 +53,12 @@ export class Paginator<T> implements Pagination {
      * @param columns
      * @param config
      */
-    constructor(url: string, columns: Column<T>[], config?: Config<T>) {
+    constructor(
+        private url: string,
+        private columns: Column<T>[],
+        private config?: Config<T>
+    ) {
 
-        this.columns = columns
         this.page = 1
         this.rowsPerPage = config?.rowsPerPage ?? 15
         this.rowsNumber = 0
@@ -88,7 +66,6 @@ export class Paginator<T> implements Pagination {
         this.sortBy = config?.sortBy ?? ''
         this.descending = config?.descending ?? false
         this.data = []
-        this.path = url
         this.client = config?.axiosInstance ?? axios
         this.onFetch = config?.onFetch
         this.onFailedFetch = config?.onFailedFetch
@@ -199,9 +176,14 @@ export class Paginator<T> implements Pagination {
 
         const routerArgs = this.buildRouterArgs(props, args)
 
-        const response = await this.client.get<ServerPaginator<T>>(this.path, {
-            params: routerArgs
+        const response = await fetch(this.path, {
+            body: routerArgs,
         })
+
+        const body = await response.json() as ServerPaginator<T>
+        /*const response = await this.client.get<ServerPaginator<T>>(this.path, {
+            params: routerArgs
+        })*/
 
         const serverPaginator = response.data
 

@@ -5,7 +5,7 @@ export default defineConfig({
     build: {
         lib: {
             name: 'laravel-quasar-table',
-            entry: 'src/Paginator.ts',
+            entry: 'src/paginator.service.ts',
             fileName: format => `laravel-quasar-table.${format}.js`
         }
     },

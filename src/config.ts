@@ -1,14 +1,29 @@
-import {AxiosInstance} from "axios";
 import {ServerPaginator} from "./ServerPaginator";
 
 /**
  * @author Abel David.
  */
 export interface Config<T> {
+
     /**
-     * Custom axios instance.
+     * Page number (1-based)
      */
-    axiosInstance?: AxiosInstance
+    page?: number;
+
+    /**
+     * Initial sort by.
+     */
+    sortBy?: string
+    /**
+     * Initial descending.
+     */
+    descending?: boolean
+
+    /**
+     * Rows per page.
+     */
+    rowsPerPage?: number
+
     /**
      * On fetching callback.
      */
@@ -24,20 +39,4 @@ export interface Config<T> {
      * @param e Error.
      */
     onFailedFetch?: (e: any) => void
-    /**
-     * Rows per page.
-     */
-    rowsPerPage?: number
-    /**
-     * Initial filter.
-     */
-    filter?: string
-    /**
-     * Initial sort by.
-     */
-    sortBy?: string
-    /**
-     * Initial descending.
-     */
-    descending?: boolean
 }
