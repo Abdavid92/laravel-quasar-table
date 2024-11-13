@@ -3,6 +3,7 @@ import {Column} from "./Column";
 import {ref} from "vue";
 import {Pagination} from "./Pagination";
 import {Paginator} from "./Paginator";
+import {ServerPagination} from "./ServerPagination";
 
 /**
  * Helper for make a pagination.
@@ -28,4 +29,11 @@ export function usePagination<T>(data: ServerPaginator<T>, columns: Column[]) {
         filter,
         onRequest
     }
+}
+
+export type {
+    Column,
+    Pagination,
+    ServerPaginator,
+    ServerPagination
 }

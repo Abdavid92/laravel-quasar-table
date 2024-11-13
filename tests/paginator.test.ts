@@ -1,5 +1,5 @@
 import {expect, test} from "vitest";
-import {usePagination} from "../src/Paginator";
+import {usePagination} from "../src";
 
 test('paginator test', () => {
 
